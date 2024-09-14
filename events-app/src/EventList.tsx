@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './EventList.css';
 
 interface Event {
-  id: number;
-  event: string;
+  event_title: string;
   date: string;
-  type: string;
-  age: string;
-  description: string;
-  location: string;
+  event_type: string;
+  event_description: string;
+  url: string;
 }
 
 const EventList: React.FC = () => {
@@ -17,7 +15,6 @@ const EventList: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [typeFilter, setTypeFilter] = useState<string>('');
-  const [ageFilter, setAgeFilter] = useState<string>('');
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
   const [selectedLocation, setSelectedLocation] = useState<string>('Amsterdam');
@@ -31,7 +28,7 @@ const EventList: React.FC = () => {
 
   useEffect(() => {
     filterEvents();
-  }, [events, typeFilter, ageFilter, startDate, endDate]);
+  }, [events, typeFilter, startDate, endDate]);
 
   const fetchEvents = async () => {
     setLoading(true);
@@ -40,8 +37,8 @@ const EventList: React.FC = () => {
       if (!response.ok) {
         throw new Error('Failed to fetch events');
       }
-      const data: Event[] = await response.json();
-      setEvents(data);
+      const data = await response.json();
+      setEvents(data.events);
       setLoading(false);
     } catch (err) {
       setError('An error occurred while fetching events');
@@ -53,19 +50,7 @@ const EventList: React.FC = () => {
     let filtered = events;
 
     if (typeFilter) {
-      filtered = filtered.filter(event => event.type.toLowerCase() === typeFilter.toLowerCase());
-    }
-
-    if (ageFilter) {
-      filtered = filtered.filter(event => {
-        const eventAge = event.age.toLowerCase();
-        if (ageFilter === 'adults') {
-          return !eventAge.includes('+') && !eventAge.includes('-') && eventAge !== 'all ages';
-        } else if (ageFilter === 'children') {
-          return eventAge.includes('+') || eventAge.includes('-') || eventAge === 'all ages';
-        }
-        return true;
-      });
+      filtered = filtered.filter(event => event.event_type.toLowerCase() === typeFilter.toLowerCase());
     }
 
     if (startDate) {
@@ -82,12 +67,9 @@ const EventList: React.FC = () => {
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
     return date.toLocaleString('nl-NL', {
-      weekday: 'long',
       year: 'numeric',
       month: 'long',
       day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
     });
   };
 
@@ -103,7 +85,7 @@ const EventList: React.FC = () => {
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">{error}</div>;
 
-  const eventTypes = Array.from(new Set(events.map(event => event.type)));
+  const eventTypes = Array.from(new Set(events.map(event => event.event_type)));
 
   return (
     <div className="event-list">
@@ -131,15 +113,6 @@ const EventList: React.FC = () => {
             <option key={type} value={type}>{type}</option>
           ))}
         </select>
-        <select 
-          value={ageFilter} 
-          onChange={(e) => setAgeFilter(e.target.value)}
-          className="filter-select"
-        >
-          <option value="">All Ages</option>
-          <option value="children">Children</option>
-          <option value="adults">Adults</option>
-        </select>
         <input
           type="date"
           value={startDate}
@@ -156,16 +129,16 @@ const EventList: React.FC = () => {
         />
       </div>
       <div className="event-grid">
-        {filteredEvents.map((event) => (
-          <div key={event.id} className="event-card">
+        {filteredEvents.map((event, index) => (
+          <div key={index} className="event-card">
             <div className="event-header">
-              <h2 className="event-title">{event.event}</h2>
-              <span className="event-type">{event.type}</span>
+              <h2 className="event-title">{event.event_title}</h2>
+              <span className="event-type">{event.event_type}</span>
             </div>
             <div className="event-body">
               <p className="event-date">{formatDate(event.date)}</p>
-              <p className="event-age">Age: {event.age}</p>
-              <p className="event-description">{event.description}</p>
+              <p className="event-description">{event.event_description}</p>
+              <a href={event.url} target="_blank" rel="noopener noreferrer" className="event-link">More Info</a>
             </div>
           </div>
         ))}
