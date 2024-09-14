@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/whats-on.life/static/css/main.0253bad8.css",
-    "main.js": "/whats-on.life/static/js/main.8b6d60fd.js",
-    "static/js/453.5d83866b.chunk.js": "/whats-on.life/static/js/453.5d83866b.chunk.js",
-    "index.html": "/whats-on.life/index.html",
-    "main.0253bad8.css.map": "/whats-on.life/static/css/main.0253bad8.css.map",
-    "main.8b6d60fd.js.map": "/whats-on.life/static/js/main.8b6d60fd.js.map",
-    "453.5d83866b.chunk.js.map": "/whats-on.life/static/js/453.5d83866b.chunk.js.map"
+    "main.css": "/static/css/main.0253bad8.css",
+    "main.js": "/static/js/main.2209f625.js",
+    "static/js/453.5d83866b.chunk.js": "/static/js/453.5d83866b.chunk.js",
+    "index.html": "/index.html",
+    "main.0253bad8.css.map": "/static/css/main.0253bad8.css.map",
+    "main.2209f625.js.map": "/static/js/main.2209f625.js.map",
+    "453.5d83866b.chunk.js.map": "/static/js/453.5d83866b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0253bad8.css",
-    "static/js/main.8b6d60fd.js"
+    "static/js/main.2209f625.js"
   ]
 }
