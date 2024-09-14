@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import mockEventsData from './mock-events-data.json';
 import './EventList.css';
 
 interface Event {
@@ -9,6 +8,7 @@ interface Event {
   type: string;
   age: string;
   description: string;
+  location: string;
 }
 
 const EventList: React.FC = () => {
@@ -27,15 +27,21 @@ const EventList: React.FC = () => {
 
   useEffect(() => {
     fetchEvents();
-  }, []);
+  }, [selectedLocation]);
 
   useEffect(() => {
     filterEvents();
-  }, [events, typeFilter, ageFilter, startDate, endDate, selectedLocation]);
+  }, [events, typeFilter, ageFilter, startDate, endDate]);
 
   const fetchEvents = async () => {
+    setLoading(true);
     try {
-      setEvents(mockEventsData.events);
+      const response = await fetch(`https://events-backend-192724f7e809.herokuapp.com/events?location=${selectedLocation}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch events');
+      }
+      const data: Event[] = await response.json();
+      setEvents(data);
       setLoading(false);
     } catch (err) {
       setError('An error occurred while fetching events');
