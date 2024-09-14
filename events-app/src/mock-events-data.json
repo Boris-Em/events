@@ -1,0 +1,44 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "event": "Hoeheettut",
+      "date": "2024-10-06T14:00:00Z",
+      "type": "Theater",
+      "age": "6+",
+      "description": "Een beeldende en speelse familievoorstelling over letters, woorden en zinnen."
+    },
+    {
+      "id": 2,
+      "event": "Jazzconcert in het Park",
+      "date": "2024-07-15T19:30:00Z",
+      "type": "Music",
+      "age": "All ages",
+      "description": "Een avond vol swingende jazz onder de sterrenhemel in het stadspark."
+    },
+    {
+      "id": 3,
+      "event": "Kunstexpositie: Moderne Meesters",
+      "date": "2024-09-01T10:00:00Z",
+      "type": "Art",
+      "age": "12+",
+      "description": "Een unieke tentoonstelling van hedendaagse kunstwerken door opkomende Nederlandse kunstenaars."
+    },
+    {
+      "id": 4,
+      "event": "Kinderfestival: Droomwereld",
+      "date": "2024-08-20T09:00:00Z",
+      "type": "Festival",
+      "age": "4-12",
+      "description": "Een magisch dagje uit voor kinderen met workshops, voorstellingen en spelletjes in het teken van dromen en fantasie."
+    },
+    {
+      "id": 5,
+      "event": "Filmmarathon: Sci-Fi Klassiekers",
+      "date": "2024-12-12T20:00:00Z",
+      "type": "Cinema",
+      "age": "16+",
+      "description": "Een nacht lang genieten van de beste science fiction films aller tijden op groot scherm."
+    }
+  ]
+}

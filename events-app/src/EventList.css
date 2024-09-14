@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+body {
+  background-color: #000080; /* Navy blue background */
+  color: #FFFFFF; /* White text for better readability */
+  font-size: 24px; /* Base font size */
+}
+
+.location-selector {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .event-list-subtitle {
+    font-family: 'VT323', monospace;
+    color: #00FFFF; /* Cyan subtitle */
+    font-size: 36px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px #FF00FF;
+    cursor: pointer; /* This was already here */
+    transition: color 0.3s ease;
+  }
+  
+  .event-list-subtitle:hover {
+    color: #FFFF00; /* Yellow on hover */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="48" viewport="0 0 100 100" style="fill:black;font-size:24px;"><text y="20">👆</text></svg>') 16 0, auto;
+    /* This creates a custom cursor using an emoji. Adjust the numbers at the end to change the cursor's hot spot. */
+  }
+  
+  .location-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000080;
+    border: 3px solid #00FF00;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    z-index: 1000;
+  }
+  
+  .location-dropdown li {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .location-dropdown li:hover {
+    background-color: #00FF00;
+    color: #000080;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="48" viewport="0 0 100 100" style="fill:black;font-size:24px;"><text y="20">👆</text></svg>') 16 0, auto;
+    /* Same custom cursor for consistency */
+  }
+
+.event-list {
+  font-family: 'VT323', monospace;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.event-list-title {
+  font-family: 'Press Start 2P', cursive;
+  text-align: center;
+  color: #FFFF00; /* Yellow title */
+  font-size: 36px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px #FF00FF;
+  line-height: 1.4;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.filter-select, .filter-date {
+  font-family: 'VT323', monospace;
+  flex: 1;
+  min-width: 120px; /* Ensure a minimum width for readability */
+  padding: 12px 15px;
+  margin: 5px;
+  border: 3px solid #00FF00;
+  background-color: #000080;
+  font-size: 22px; /* Slightly reduced for better fit */
+  color: #FFFFFF;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 8 8'%3E%3Cpath fill='%2300FF00' d='M0 0l4 4 4-4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+.filter-select:focus, .filter-date:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #FFFF00; /* Yellow focus ring for better visibility */
+}
+
+.event-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.event-card {
+  background-color: #000080;
+  border: 3px solid #00FF00;
+  padding: 25px;
+  position: relative;
+}
+
+.event-card::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 2px dotted #00FF00;
+  pointer-events: none;
+}
+
+.event-header {
+  margin-bottom: 25px;
+}
+
+.event-title {
+  font-size: 36px;
+  font-weight: normal;
+  margin: 0;
+  margin-bottom: 15px;
+  color: #FFFF00; /* Yellow event title */
+  line-height: 1.2;
+}
+
+.event-type {
+  font-size: 28px;
+  color: #FF00FF; /* Magenta event type */
+}
+
+.event-body {
+  font-size: 28px;
+}
+
+.event-date, .event-age {
+  color: #00FFFF; /* Cyan for date and age */
+  margin-bottom: 12px;
+}
+
+.event-description {
+  color: #FFFFFF; /* White description text for better readability */
+  line-height: 1.5;
+}
+
+.loading, .error {
+  text-align: center;
+  color: #FF0000; /* Red for loading/error messages */
+  font-size: 36px;
+  margin-top: 50px;
+}
+
+/* Softer scanlines for less visual interference */
+@keyframes scanline {
+  0% {
+    background-position: 0 50%;
+  }
+  100% {
+    background-position: 0 50.5%;
+  }
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  animation: scanline 10s linear infinite;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+  .filters {
+    flex-direction: column;
+  }
+
+  .filter-select, .filter-date {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
