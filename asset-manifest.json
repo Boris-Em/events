@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/whats-on.life/static/css/main.0253bad8.css",
-    "main.js": "/whats-on.life/static/js/main.173509ee.js",
+    "main.js": "/whats-on.life/static/js/main.8b6d60fd.js",
     "static/js/453.5d83866b.chunk.js": "/whats-on.life/static/js/453.5d83866b.chunk.js",
     "index.html": "/whats-on.life/index.html",
     "main.0253bad8.css.map": "/whats-on.life/static/css/main.0253bad8.css.map",
-    "main.173509ee.js.map": "/whats-on.life/static/js/main.173509ee.js.map",
+    "main.8b6d60fd.js.map": "/whats-on.life/static/js/main.8b6d60fd.js.map",
     "453.5d83866b.chunk.js.map": "/whats-on.life/static/js/453.5d83866b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0253bad8.css",
-    "static/js/main.173509ee.js"
+    "static/js/main.8b6d60fd.js"
   ]
 }
