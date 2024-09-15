@@ -1,15 +1,19 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import EventList from './EventList';
+import VenueList from './VenueList';
+import './App.css';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-      <main>
-        <EventList />
-      </main>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<EventList />} />
+          <Route path="/settings" element={<VenueList />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 

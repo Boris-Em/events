@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './EventList.css';
 
 interface Event {
@@ -143,6 +144,7 @@ const EventList: React.FC = () => {
           </div>
         ))}
       </div>
+      <Link to="/settings" className="settings-button">Settings</Link>
     </div>
   );
 };

@@ -1,0 +1,28 @@
+{
+  "venues": [
+    {
+      "id": 1,
+      "name": "Melkweg",
+      "description": "The Melkweg is a popular music venue and cultural center in Amsterdam.",
+      "address": "Lijnbaansgracht 234A, 1017 PH Amsterdam"
+    },
+    {
+      "id": 2,
+      "name": "Paradiso",
+      "description": "Paradiso is a music venue and cultural center located in Amsterdam.",
+      "address": "Weteringschans 6-8, 1017 SG Amsterdam"
+    },
+    {
+      "id": 3,
+      "name": "AFAS Live",
+      "description": "AFAS Live is a concert hall in Amsterdam, formerly known as the Heineken Music Hall.",
+      "address": "ArenA Boulevard 590, 1101 DS Amsterdam"
+    },
+    {
+      "id": 4,
+      "name": "Ziggo Dome",
+      "description": "The Ziggo Dome is a multi-use indoor arena in Amsterdam, primarily used for concerts.",
+      "address": "De Passage 100, 1101 AX Amsterdam"
+    }
+  ]
+}

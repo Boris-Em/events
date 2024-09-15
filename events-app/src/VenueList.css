@@ -1,0 +1,123 @@
+.venue-list {
+  font-family: 'VT323', monospace;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.venue-list-title {
+  font-family: 'Press Start 2P', cursive;
+  text-align: center;
+  color: #FFFF00;
+  font-size: 36px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 3px 3px #FF00FF;
+}
+
+.venue-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.venue-card {
+  background-color: #000080;
+  border: 3px solid #00FF00;
+  padding: 20px;
+  color: #FFFFFF;
+}
+
+.venue-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.venue-name {
+  font-size: 24px;
+  color: #FFFF00;
+  margin: 0;
+}
+
+.venue-toggle {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.venue-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+  background-color: #00FF00;
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(26px);
+}
+
+.venue-description, .venue-address {
+  font-size: 18px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.venue-address {
+  font-style: italic;
+  color: #00FFFF;
+}
+
+.venue-list-title {
+  margin-bottom: 10px; /* Reduced from 30px to accommodate the new info text */
+}
+
+.venue-list-info {
+  font-family: 'VT323', monospace;
+  text-align: center;
+  color: #00FFFF; /* Cyan color for visibility */
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.email-link {
+  color: #FFFF00; /* Yellow color for the email link */
+  text-decoration: none;
+  border-bottom: 1px solid #FFFF00;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.email-link:hover, .email-link:focus {
+  color: #00FF00; /* Green color on hover/focus */
+  border-color: #00FF00;
+}

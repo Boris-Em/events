@@ -1,0 +1,65 @@
+import React, { useState, useEffect } from 'react';
+import mockVenueData from './mock-venues-data.json';
+import './VenueList.css';
+
+interface Venue {
+  id: number;
+  name: string;
+  description: string;
+  address: string;
+  isActive: boolean;
+}
+
+const VenueList: React.FC = () => {
+  const [venues, setVenues] = useState<Venue[]>([]);
+
+  useEffect(() => {
+    // Initialize venues with isActive property
+    const initializedVenues = mockVenueData.venues.map(venue => ({
+      ...venue,
+      isActive: false
+    }));
+    setVenues(initializedVenues);
+  }, []);
+
+  const toggleVenue = (id: number) => {
+    setVenues(prevVenues =>
+      prevVenues.map(venue =>
+        venue.id === id ? { ...venue, isActive: !venue.isActive } : venue
+      )
+    );
+  };
+
+  return (
+    <div className="venue-list">
+      <h1 className="venue-list-title">Venues</h1>
+      <p className="venue-list-info">
+        Don't see your favorite venue? Email us at{' '}
+        <a href="mailto:contact@whats-on.life" className="email-link">
+          contact@whats-on.life
+        </a>
+      </p>
+      <div className="venue-grid">
+        {venues.map((venue) => (
+          <div key={venue.id} className="venue-card">
+            <div className="venue-header">
+              <h2 className="venue-name">{venue.name}</h2>
+              <label className="venue-toggle">
+                <input
+                  type="checkbox"
+                  checked={venue.isActive}
+                  onChange={() => toggleVenue(venue.id)}
+                />
+                <span className="toggle-slider"></span>
+              </label>
+            </div>
+            <p className="venue-description">{venue.description}</p>
+            <p className="venue-address">{venue.address}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default VenueList;
