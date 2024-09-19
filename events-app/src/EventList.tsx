@@ -16,8 +16,7 @@ const EventList: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [typeFilter, setTypeFilter] = useState<string>('');
-  const [startDate, setStartDate] = useState<string>('');
-  const [endDate, setEndDate] = useState<string>('');
+  const [date, setDate] = useState<string>('');
   const [selectedLocation, setSelectedLocation] = useState<string>('Amsterdam');
   const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState<boolean>(false);
 
@@ -29,7 +28,7 @@ const EventList: React.FC = () => {
 
   useEffect(() => {
     filterEvents();
-  }, [events, typeFilter, startDate, endDate]);
+  }, [events, typeFilter, date]);
 
   const fetchEvents = async () => {
     setLoading(true);
@@ -54,12 +53,9 @@ const EventList: React.FC = () => {
       filtered = filtered.filter(event => event.event_type.toLowerCase() === typeFilter.toLowerCase());
     }
 
-    if (startDate) {
-      filtered = filtered.filter(event => new Date(event.date) >= new Date(startDate));
-    }
-
-    if (endDate) {
-      filtered = filtered.filter(event => new Date(event.date) <= new Date(endDate));
+    if (date) {
+      console.log(date);
+      filtered = filtered.filter(event => new Date(event.date).getDate() === new Date(date).getDate());
     }
 
     setFilteredEvents(filtered);
@@ -116,17 +112,10 @@ const EventList: React.FC = () => {
         </select>
         <input
           type="date"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
           className="filter-date"
           placeholder="Start Date"
-        />
-        <input
-          type="date"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-          className="filter-date"
-          placeholder="End Date"
         />
       </div>
       <div className="event-grid">
