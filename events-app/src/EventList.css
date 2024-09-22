@@ -243,8 +243,12 @@ body {
     flex-direction: column;
   }
 
-  .filter-select, .filter-date {
+  .filter-select {
     width: 100%;
+  }
+
+  .filter-date {
+    width: 92.5%;
   }
 
   .event-list-title {
