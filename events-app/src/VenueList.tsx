@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import mockVenueData from './mock-venues-data.json';
 import './VenueList.css';
 
 interface Venue {
