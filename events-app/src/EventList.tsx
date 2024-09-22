@@ -33,12 +33,12 @@ const EventList: React.FC = () => {
   const fetchEvents = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`https://events-aggregator-d0338ed631c8.herokuapp.com/events?location=${selectedLocation}`);
+      const response = await fetch(`https://events-aggregator-d0338ed631c8.herokuapp.com/api/v1/events`);
       if (!response.ok) {
         throw new Error('Failed to fetch events');
       }
       const data = await response.json();
-      setEvents(data.events);
+      setEvents(data);
       setLoading(false);
     } catch (err) {
       setError('An error occurred while fetching events');

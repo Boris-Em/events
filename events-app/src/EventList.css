@@ -1,228 +1,221 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-body {
-  background-color: #000080; /* Navy blue background */
-  color: #FFFFFF; /* White text for better readability */
-  font-size: 24px; /* Base font size */
+:root {
+  --background-color: #fafafa;
+  --text-color: #262626;
+  --secondary-text-color: #8e8e8e;
+  --border-color: #dbdbdb;
+  --accent-color: #0095f6;
+  --like-color: #ed4956;
+  --card-background: #ffffff;
+  --border-radius: 3px;
 }
 
-.location-selector {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .event-list-subtitle {
-    font-family: 'VT323', monospace;
-    color: #00FFFF; /* Cyan subtitle */
-    font-size: 36px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px #FF00FF;
-    cursor: pointer; /* This was already here */
-    transition: color 0.3s ease;
-  }
-  
-  .event-list-subtitle:hover {
-    color: #FFFF00; /* Yellow on hover */
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="48" viewport="0 0 100 100" style="fill:black;font-size:24px;"><text y="20">👆</text></svg>') 16 0, auto;
-    /* This creates a custom cursor using an emoji. Adjust the numbers at the end to change the cursor's hot spot. */
-  }
-  
-  .location-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #000080;
-    border: 3px solid #00FF00;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    z-index: 1000;
-  }
-  
-  .location-dropdown li {
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .location-dropdown li:hover {
-    background-color: #00FF00;
-    color: #000080;
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="48" viewport="0 0 100 100" style="fill:black;font-size:24px;"><text y="20">👆</text></svg>') 16 0, auto;
-    /* Same custom cursor for consistency */
-  }
+body {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
 
 .event-list {
-  font-family: 'VT323', monospace;
-  max-width: 800px;
+  max-width: 935px;
+  width: 100%;
   margin: 0 auto;
-  padding: 20px;
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+
+.event-list-header {
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .event-list-title {
-  font-family: 'Press Start 2P', cursive;
-  text-align: center;
-  color: #FFFF00; /* Yellow title */
-  font-size: 36px;
-  margin-bottom: 40px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px #FF00FF;
-  line-height: 1.4;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.event-list-subtitle {
+  font-size: 16px;
+  color: var(--secondary-text-color);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.event-list-subtitle:hover {
+  color: var(--text-color);
+}
+
+.location-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1000;
+  width: 200px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.location-dropdown li {
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.location-dropdown li:hover {
+  background-color: var(--background-color);
 }
 
 .filters {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 40px;
-  flex-wrap: wrap;
+  margin-bottom: 30px;
+  gap: 10px;
 }
 
 .filter-select, .filter-date {
-  font-family: 'VT323', monospace;
-  flex: 1;
-  min-width: 120px; /* Ensure a minimum width for readability */
-  padding: 12px 15px;
-  margin: 5px;
-  border: 3px solid #00FF00;
-  background-color: #000080;
-  font-size: 22px; /* Slightly reduced for better fit */
-  color: #FFFFFF;
+  font-family: inherit;
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  color: var(--text-color);
+  background-color: var(--card-background);
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 8 8'%3E%3Cpath fill='%2300FF00' d='M0 0l4 4 4-4z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 12px;
+  min-width: 150px;
 }
 
 .filter-select:focus, .filter-date:focus {
   outline: none;
-  box-shadow: 0 0 0 3px #FFFF00; /* Yellow focus ring for better visibility */
+  border-color: var(--secondary-text-color);
 }
 
 .event-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
 }
 
 .event-card {
-  background-color: #000080;
-  border: 3px solid #00FF00;
-  padding: 25px;
-  position: relative;
-}
-
-.event-card::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  right: 8px;
-  bottom: 8px;
-  border: 2px dotted #00FF00;
-  pointer-events: none;
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .event-header {
-  margin-bottom: 25px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
 }
 
 .event-title {
-  font-size: 36px;
-  font-weight: normal;
+  font-size: 14px;
+  font-weight: 600;
   margin: 0;
-  margin-bottom: 15px;
-  color: #FFFF00; /* Yellow event title */
-  line-height: 1.2;
+  color: var(--text-color);
 }
 
 .event-type {
-  font-size: 28px;
-  color: #FF00FF; /* Magenta event type */
+  font-size: 12px;
+  color: var(--secondary-text-color);
+  margin-left: auto;
 }
 
 .event-body {
-  font-size: 28px;
+  padding: 16px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.event-date, .event-age {
-  color: #00FFFF; /* Cyan for date and age */
-  margin-bottom: 12px;
+.event-date {
+  color: var(--secondary-text-color);
+  margin-bottom: 8px;
+  font-size: 12px;
 }
 
 .event-description {
-  color: #FFFFFF; /* White description text for better readability */
-  line-height: 1.5;
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.event-link {
+  display: inline-block;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  align-self: flex-end;
+  margin-top: auto;
+}
+
+.event-link:hover {
+  text-decoration: underline;
 }
 
 .loading, .error {
   text-align: center;
-  color: #FF0000; /* Red for loading/error messages */
-  font-size: 36px;
-  margin-top: 50px;
+  color: var(--secondary-text-color);
+  font-size: 16px;
+  margin-top: 40px;
 }
 
-/* Softer scanlines for less visual interference */
-@keyframes scanline {
-  0% {
-    background-position: 0 50%;
-  }
-  100% {
-    background-position: 0 50.5%;
-  }
-}
-
-body::after {
-  content: "";
+.settings-button {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0.03),
-    rgba(255, 255, 255, 0.03) 1px,
-    transparent 1px,
-    transparent 2px
-  );
-  pointer-events: none;
-  animation: scanline 10s linear infinite;
+  top: 16px;
+  right: 16px;
+  background-color: transparent;
+  color: var(--secondary-text-color);
+  border: none;
+  padding: 8px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
 
-/* Media query for smaller screens */
-@media (max-width: 600px) {
+.settings-button:hover {
+  color: var(--text-color);
+}
+
+@media (max-width: 935px) {
+  .event-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 735px) {
+  .event-grid {
+    grid-template-columns: 1fr;
+  }
+
   .filters {
     flex-direction: column;
   }
 
   .filter-select, .filter-date {
     width: 100%;
-    margin: 5px 0;
+  }
+
+  .event-list-title {
+    font-size: 24px;
   }
 }
-
-.settings-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #00FF00;
-    color: #000080;
-    border: none;
-    padding: 10px 20px;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 14px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .settings-button:hover {
-    background-color: #FFFF00;
-  }
