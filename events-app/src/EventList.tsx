@@ -11,6 +11,7 @@ interface Event {
   url: string;
   id: number;
   venue_id: number;
+  photo_url: string;  // Added this line
 }
 
 interface Venue {
@@ -117,8 +118,13 @@ const EventList: React.FC = () => {
     setIsLocationDropdownOpen(false);
   };
 
-  if (loading) return <div className="loading">Loading...</div>;
-  if (error) return <div className="error">{error}</div>;
+  if (loading) return <div className="loading">Loading your events...</div>;
+  if (error) return (
+    <div className="error">{error}
+      <Link to="/settings" className="settings-button">Settings
+      </Link>
+    </div>
+  );
 
   const eventTypes = Array.from(new Set(events.map(event => event.event_type)));
 
@@ -159,6 +165,13 @@ const EventList: React.FC = () => {
       <div className="event-grid">
         {filteredEvents.map((event, index) => (
           <div key={index} className="event-card">
+            {event.photo_url && (
+              <div className="event-image">
+                <img src={event.photo_url} alt={event.event_title} onError={(e) => {
+                  e.currentTarget.src = 'https://via.placeholder.com/300x200?text=No+Image';
+                }} />
+              </div>
+            )}
             <div className="event-header">
               <h2 className="event-title">{event.event_title}</h2>
               <span className="event-type">{event.event_type}</span>
@@ -172,7 +185,7 @@ const EventList: React.FC = () => {
           </div>
         ))}
       </div>
-      <Link to="/settings" className="settings-button">Settings</Link>
+      <Link to="/settings" className="settings-button">Preferences</Link>
     </div>
   );
 };
