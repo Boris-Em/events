@@ -12,14 +12,11 @@ interface Venue {
 
 const VenueList: React.FC = () => {
   const [venues, setVenues] = useState<Venue[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // Initialize venues with isActive property
-    const initializedVenues = mockVenueData.venues.map(venue => ({
-      ...venue,
-      isActive: false
-    }));
-    setVenues(initializedVenues);
+    fetchVenues();
   }, []);
 
   const toggleVenue = (id: number) => {
@@ -29,6 +26,25 @@ const VenueList: React.FC = () => {
       )
     );
   };
+
+  const fetchVenues = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('https://events-aggregator-d0338ed631c8.herokuapp.com/venues?city=amsterdam');
+      if (!response.ok) {
+        throw new Error('Failed to fetch venues');
+      }
+      const data = await response.json();
+      setVenues(data.venues);
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      setError('An error occured while fetching venues');
+    }
+  };
+
+  if (loading) return <div className="loading">Loading...</div>;
+  if (error) return <div className="error">{error}</div>;
 
   return (
     <div className="venue-list">
