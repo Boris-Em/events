@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import  { loadBlockedVenues}  from './VenuePersistence'
 import './EventList.css';
 
 interface Event {
@@ -8,6 +9,8 @@ interface Event {
   event_type: string;
   event_description: string;
   url: string;
+  id: number;
+  venue_id: number;
 }
 
 const EventList: React.FC = () => {
@@ -55,6 +58,18 @@ const EventList: React.FC = () => {
 
     if (date) {
       filtered = filtered.filter(event => new Date(event.date).getDate() === new Date(date).getDate());
+    }
+
+    let blockedVenueIds = loadBlockedVenues();
+
+    if (Object.keys(blockedVenueIds).length !== 0) {
+      filtered = filtered.filter(event => blockedVenueIds[event.venue_id])
+    }
+
+    if (filtered.length === 0) {
+      setError('No events found. Please adjust your filters.');
+    } else {
+      setError(null);
     }
 
     setFilteredEvents(filtered);

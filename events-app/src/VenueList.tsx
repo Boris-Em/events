@@ -26,7 +26,7 @@ const VenueList: React.FC = () => {
       );
       
       const blockedVenues = Object.fromEntries(
-        updatedVenues.filter(venue => !venue.isActive).map(venue => [venue.id, true])
+        updatedVenues.map(venue => [venue.id, venue.isActive])
       );
       saveBlockedVenues(blockedVenues);
       return updatedVenues;
@@ -36,17 +36,18 @@ const VenueList: React.FC = () => {
   const fetchVenues = async () => {
     try {
       setLoading(true);
-      let blockedVenueIds = loadBlockedVenues();
-      const response = await fetch('https://events-aggregator-d0338ed631c8.herokuapp.com/venues?city=amsterdam');
+      const response = await fetch('https://events-aggregator-d0338ed631c8.herokuapp.com/api/v1/venues');
       if (!response.ok) {
         throw new Error('Failed to fetch venues');
       }
       const data = await response.json();
-      console.log(data.venues);
-      const updatedVenues = data.venues.map((venue: Venue) => ({
+      
+      let blockedVenueIds = loadBlockedVenues();
+      const updatedVenues = data.map((venue: Venue) => ({
         ...venue,
-        isActive: blockedVenueIds[venue.id] == null
+        isActive: blockedVenueIds[venue.id]
       }));
+
       setVenues(updatedVenues);
       setLoading(false);
     } catch (err) {
