@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import  { loadBlockedVenues}  from './VenuePersistence'
+import { loadBlockedVenues } from './VenuePersistence'
 import './EventList.css';
 
 interface Event {
@@ -13,9 +13,15 @@ interface Event {
   venue_id: number;
 }
 
+interface Venue {
+  id: number;
+  name: string;
+}
+
 const EventList: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
   const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
+  const [venues, setVenues] = useState<{ [id: number]: string }>({});
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [typeFilter, setTypeFilter] = useState<string>('');
@@ -27,6 +33,7 @@ const EventList: React.FC = () => {
 
   useEffect(() => {
     fetchEvents();
+    fetchVenues();
   }, [selectedLocation]);
 
   useEffect(() => {
@@ -46,6 +53,23 @@ const EventList: React.FC = () => {
     } catch (err) {
       setError('An error occurred while fetching events');
       setLoading(false);
+    }
+  };
+
+  const fetchVenues = async () => {
+    try {
+      const response = await fetch('https://events-aggregator-d0338ed631c8.herokuapp.com/api/v1/venues');
+      if (!response.ok) {
+        throw new Error('Failed to fetch venues');
+      }
+      const data: Venue[] = await response.json();
+      const venueMap = data.reduce((acc, venue) => {
+        acc[venue.id] = venue.name;
+        return acc;
+      }, {} as { [id: number]: string });
+      setVenues(venueMap);
+    } catch (err) {
+      console.error('An error occurred while fetching venues', err);
     }
   };
 
@@ -141,6 +165,7 @@ const EventList: React.FC = () => {
             </div>
             <div className="event-body">
               <p className="event-date">{formatDate(event.date)}</p>
+              <p className="event-venue">{venues[event.venue_id] || 'Unknown Venue'}</p>
               <p className="event-description">{event.event_description}</p>
               <a href={event.url} target="_blank" rel="noopener noreferrer" className="event-link">More Info</a>
             </div>

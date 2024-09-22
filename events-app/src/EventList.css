@@ -148,7 +148,8 @@ body {
 .event-date {
   color: var(--secondary-text-color);
   margin-bottom: 8px;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 1000;
 }
 
 .event-description {
@@ -218,4 +219,11 @@ body {
   .event-list-title {
     font-size: 24px;
   }
+}
+
+.event-venue {
+  color: var(--secondary-text-color);
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 500;
 }
