@@ -130,6 +130,7 @@ const EventList: React.FC = () => {
 
   return (
     <div className="event-list">
+      <Link to="/settings" className="settings-button">Preferences</Link>
       <div className="event-list-header">
         <h1 className="event-list-title">What's On</h1>
         <div className="location-selector">
@@ -185,7 +186,6 @@ const EventList: React.FC = () => {
           </div>
         ))}
       </div>
-      <Link to="/settings" className="settings-button">Preferences</Link>
     </div>
   );
 };

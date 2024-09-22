@@ -212,14 +212,14 @@ body {
 }
 
 .settings-button {
-  position: fixed;
+  position: absolute;
   top: 16px;
   right: 16px;
   background-color: transparent;
   color: var(--secondary-text-color);
   border: none;
-  padding: 8px;
-  font-size: 24px;
+  padding: 0px;
+  font-size: 14px;
   cursor: pointer;
   transition: color 0.3s ease;
 }
