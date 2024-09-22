@@ -54,7 +54,6 @@ const EventList: React.FC = () => {
     }
 
     if (date) {
-      console.log(date);
       filtered = filtered.filter(event => new Date(event.date).getDate() === new Date(date).getDate());
     }
 

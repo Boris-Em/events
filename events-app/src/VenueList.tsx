@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import  { loadBlockedVenues, saveBlockedVenues}  from './VenuePersistence'
 import './VenueList.css';
 
 interface Venue {
@@ -19,22 +20,34 @@ const VenueList: React.FC = () => {
   }, []);
 
   const toggleVenue = (id: number) => {
-    setVenues(prevVenues =>
-      prevVenues.map(venue =>
+    setVenues(prevVenues => {
+      const updatedVenues = prevVenues.map(venue =>
         venue.id === id ? { ...venue, isActive: !venue.isActive } : venue
-      )
-    );
+      );
+      
+      const blockedVenues = Object.fromEntries(
+        updatedVenues.filter(venue => !venue.isActive).map(venue => [venue.id, true])
+      );
+      saveBlockedVenues(blockedVenues);
+      return updatedVenues;
+    });
   };
 
   const fetchVenues = async () => {
     try {
       setLoading(true);
+      let blockedVenueIds = loadBlockedVenues();
       const response = await fetch('https://events-aggregator-d0338ed631c8.herokuapp.com/venues?city=amsterdam');
       if (!response.ok) {
         throw new Error('Failed to fetch venues');
       }
       const data = await response.json();
-      setVenues(data.venues);
+      console.log(data.venues);
+      const updatedVenues = data.venues.map((venue: Venue) => ({
+        ...venue,
+        isActive: blockedVenueIds[venue.id] == null
+      }));
+      setVenues(updatedVenues);
       setLoading(false);
     } catch (err) {
       setLoading(false);
