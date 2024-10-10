@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #006aff; /* Light gray background for the whole page */
+  min-height: 100vh; /* Ensure the background covers the full height of the viewport */
+}
+
+.App {
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.app-icon {
+  width: 120px;
+  height: 120px;
+  margin-top: 100px;
+  margin-bottom: 20px;
+  border-radius: 24px; /* Rounded corners for the app icon */
+  overflow: hidden;
+}
+
+.app-title {
+  font-size: 34px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.app-description {
+  margin-bottom: 30px;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+.image-link {
+  width: 200px;
+}
+
+.app-store-button:hover {
+  background-color: #005ECF;
+}
