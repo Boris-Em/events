@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "67V847367C.life.whats-on",
+        "paths": ["*"]
+      }
+    ]
+  }
+}
